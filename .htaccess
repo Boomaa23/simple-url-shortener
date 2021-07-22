@@ -1,0 +1,17 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone America/Los_Angeles
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value memory_limit 256M
+
+ErrorDocument 400 https://ncocdn.cf/error.php?code=400
+ErrorDocument 401 https://ncocdn.cf/error.php?code=301
+ErrorDocument 403 https://ncocdn.cf/error.php?code=403
+ErrorDocument 404 https://ncocdn.cf/error.php?code=404
+ErrorDocument 503 https://ncocdn.cf/error.php?code=503
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
