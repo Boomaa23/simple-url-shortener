@@ -27,9 +27,20 @@
   <div class="center" id="main">
     <div id="title">Link Shortener</div>
     <?php
+    function doAuth() {
+      if (!isset($_SERVER['PHP_AUTH_PW']) || !isset($_SERVER['PHP_AUTH_USER']) ||
+              $_SERVER['PHP_AUTH_PW'] !== 'YOUR_PW_HERE' ||
+              $_SERVER['PHP_AUTH_USER'] !== 'YOUR_USER_HERE') {
+      			header('WWW-Authenticate: Basic realm="Secure Site"');
+      			header('HTTP/1.0 401 Unauthorized');
+      			die('This site requires authentication');
+      }
+    }
+
     $linksJson = json_decode(file_get_contents("links.json"), true);
     $clicksJson = json_decode(file_get_contents("clicks.json"), true);
     if (isset($_POST["link"])) {
+      doAuth();
       if (isset($_POST["remove"])) {
         $fn = $_POST["custom"];
         unset($linksJson[$fn]);
@@ -74,7 +85,7 @@
         } else {
           $ip = $_SERVER['REMOTE_ADDR'];
         }
-        if (!empty($_GET["dest"]) && array_key_exists($_GET["dest"], $clicksJson) && $ip !== "70.191.89.252") {
+        if (!empty($_GET["dest"]) && array_key_exists($_GET["dest"], $clicksJson) && $ip !== "YOUR_IP_HERE") {
           $clicksJson[$_GET["dest"]][date('c', time())] = $ip;
           file_put_contents("clicks.json", json_encode($clicksJson, JSON_PRETTY_PRINT));
         }
@@ -86,6 +97,7 @@
         echo '<button><a href="https://ncocdn.cf/url/" class="nostyle">Shorten a Link</a></button>';
       }
     } else {
+      doAuth();
       echo '
       <form method="post">
         <input type="text" name="link" placeholder="Link" /><br />
