@@ -1,6 +1,6 @@
 # simple-url-shortener
 
-A simple lightweight URL shortener. Currently used on https://url.ncocdn.cf/.
+A simple lightweight URL shortener. Currently used on https://url.aptapus.net/.
 
 ## Features
 - Lightweight: Uses a JSON file to store URLs instead of a database
