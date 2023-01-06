@@ -5,11 +5,11 @@ php_value upload_max_filesize 10M
 php_value post_max_size 10M
 php_value memory_limit 256M
 
-ErrorDocument 400 https://ncocdn.cf/error.php?code=400
-ErrorDocument 401 https://ncocdn.cf/error.php?code=301
-ErrorDocument 403 https://ncocdn.cf/error.php?code=403
-ErrorDocument 404 https://ncocdn.cf/error.php?code=404
-ErrorDocument 503 https://ncocdn.cf/error.php?code=503
+ErrorDocument 400 https://error.aptapus.net/400
+ErrorDocument 401 https://error.aptapus.net/401
+ErrorDocument 403 https://error.aptapus.net/403
+ErrorDocument 404 https://error.aptapus.net/404
+ErrorDocument 503 https://error.aptapus.net/503
 
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
